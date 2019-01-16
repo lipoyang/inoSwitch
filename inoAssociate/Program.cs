@@ -10,7 +10,7 @@ namespace inoAssociate
     {
         static void Main(string[] args)
         {
-            string inoSwitchPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "inoSwitch";
+            string inoSwitchPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "inoSwitch.exe";
 
             // 拡張子
             string extension = ".ino";

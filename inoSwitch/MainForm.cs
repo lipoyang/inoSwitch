@@ -311,7 +311,7 @@ namespace inoSwitch
             // 管理者権限が必要なので別プログラムを管理者として起動して処理する
 
             // 関連付けプログラム(コンソールアプリ)のパス
-            string path = "inoAssociate";
+            string path = "inoAssociate.exe";
             string arguments = ""; // 引数は無し
             Form parentForm = this; // 親フォームは自分
 
