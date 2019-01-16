@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdeInfoEvent.cs" />
     <Compile Include="IdeItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

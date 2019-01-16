@@ -13,7 +13,7 @@ namespace inoSwitch
     public partial class AddItemControl : UserControl
     {
         // IDE追加時のイベント
-        public event IdeAddEvent onAdd;
+        public event IdeInfoEvent onAdd;
 
         public AddItemControl()
         {
@@ -93,18 +93,9 @@ namespace inoSwitch
             if (inputForm.Info != null)
             {
                 // IDE追加時のイベント発行
-                IdeAddEventArgs args = new IdeAddEventArgs();
-                args.ideInfo = inputForm.Info;
+                var args = new IdeInfoEventArgs(inputForm.Info);
                 onAdd(this, args);
             }
         }
     }
-
-    // IDE追加時のイベント
-    public class IdeAddEventArgs : EventArgs
-    {
-        public IdeInfo ideInfo;
-    }
-    public delegate void IdeAddEvent(object sender, IdeAddEventArgs e);
-
 }

@@ -16,11 +16,11 @@ namespace inoSwitch
         IdeInfo m_ideInfo;
 
         // IDE選択時のイベント
-        public event IdeEvent onSelect;
+        public event IdeInfoEvent onSelect;
         // IDE情報編集時のイベント
-        public event IdeEvent onEdit;
+        public event IdeInfoEvent onEdit;
         // IDE情報削除時のイベント
-        public event IdeEvent onRemove;
+        public event IdeInfoEvent onRemove;
         
         // IDEを選択可能か
         public bool Selectable
@@ -62,8 +62,7 @@ namespace inoSwitch
         // IDE(選択)ボタン
         private void buttonIde_Click(object sender, EventArgs e)
         {
-            IdeEventArgs args = new IdeEventArgs();
-            args.ideInfo = m_ideInfo;
+            var args = new IdeInfoEventArgs(m_ideInfo);
             onSelect(this, args);
         }
 
@@ -74,24 +73,15 @@ namespace inoSwitch
             InputForm inputForm = new InputForm(m_ideInfo);
             inputForm.ShowDialog(this);
 
-            IdeEventArgs args = new IdeEventArgs();
-            args.ideInfo = m_ideInfo;
+            var args = new IdeInfoEventArgs(m_ideInfo);
             onEdit(this, args);
         }
 
         // 削除ボタン
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            IdeEventArgs args = new IdeEventArgs();
-            args.ideInfo = m_ideInfo;
+            var args = new IdeInfoEventArgs(m_ideInfo);
             onRemove(this, args);
         }
     }
-
-    // IDE選択・編集・削除時のイベント
-    public class IdeEventArgs : EventArgs
-    {
-        public IdeInfo ideInfo;
-    }
-    public delegate void IdeEvent(object sender, IdeEventArgs e);
 }

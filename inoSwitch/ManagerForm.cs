@@ -47,7 +47,7 @@ namespace inoSwitch
         }
 
         // IDEが選択されたとき
-        private void onSelect(object sender, IdeEventArgs e)
+        private void onSelect(object sender, IdeInfoEventArgs e)
         {
             // 選択されたIDE
             SelectedIde = e.ideInfo;
@@ -56,7 +56,7 @@ namespace inoSwitch
         }
 
         // IDE情報が編集されたとき
-        private void onEdit(object sender, IdeEventArgs e)
+        private void onEdit(object sender, IdeInfoEventArgs e)
         {
             // リストをソート
             m_ideList.Sort((a, b) => a.Name.CompareTo(b.Name));
@@ -67,7 +67,7 @@ namespace inoSwitch
         }
 
         // IDE情報が削除されたとき
-        private void onRemove(object sender, IdeEventArgs e)
+        private void onRemove(object sender, IdeInfoEventArgs e)
         {
             // リストからIDEを削除
             m_ideList.Remove(e.ideInfo);
@@ -80,7 +80,7 @@ namespace inoSwitch
         }
 
         // IDE情報が追加された時
-        private void onAdd(object sender, IdeAddEventArgs e)
+        private void onAdd(object sender, IdeInfoEventArgs e)
         {
             // リストにIDEを追加
             m_ideList.Add(e.ideInfo);
