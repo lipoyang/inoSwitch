@@ -308,59 +308,36 @@ namespace inoSwitch
         // inoファイルを関連付ける
         private bool associateIno()
         {
-            // 拡張子
-            string extension = ".ino";
-            // ファイルタイプ
-            string fileType = Application.ProductName + ".0";
-            string description = "Arduino sketch";
-            // 実行するコマンドライン
-            string commandline = "\"" + Application.ExecutablePath + "\" \"%1\"";
-            // アイコン
-            string iconPath = Application.ExecutablePath;
-            int iconIndex = 0;
-            // 動詞
-            string verb = "open";
-            // string verbDescription = "inoSwitchで開く(&O)";
+            // 管理者権限が必要なので別プログラムを管理者として起動して処理する
 
+            // 関連付けプログラム(コンソールアプリ)のパス
+            string path = "inoAssociate";
+            string arguments = ""; // 引数は無し
+            Form parentForm = this; // 親フォームは自分
 
-            // レジストリ
-            Microsoft.Win32.RegistryKey rootkey =
-                Microsoft.Win32.Registry.ClassesRoot;
-
-            try
-            {
-                // 拡張子の登録
-                Microsoft.Win32.RegistryKey regkey =
-                    rootkey.CreateSubKey(extension);
-                regkey.SetValue("", fileType);
-                regkey.Close();
-
-                // ファイルタイプの登録
-                Microsoft.Win32.RegistryKey typekey =
-                    rootkey.CreateSubKey(fileType);
-                typekey.SetValue("", description);
-                typekey.Close();
-
-                // 動詞の登録
-                Microsoft.Win32.RegistryKey verblkey =
-                    rootkey.CreateSubKey(fileType + "\\shell\\" + verb);
-                //            verblkey.SetValue("", verbDescription);
-                verblkey.Close();
-
-                // コマンドの登録
-                Microsoft.Win32.RegistryKey cmdkey =
-                    rootkey.CreateSubKey(fileType + "\\shell\\" + verb + "\\command");
-                cmdkey.SetValue("", commandline);
-                cmdkey.Close();
-
-                // アイコンの登録
-                Microsoft.Win32.RegistryKey iconkey =
-                    rootkey.CreateSubKey(fileType + "\\DefaultIcon");
-                iconkey.SetValue("", iconPath + "," + iconIndex.ToString());
-                iconkey.Close();
+            // プログラムがあるかチェック
+            if (!System.IO.File.Exists(path)){
+                MessageBox.Show("inoAssociateファイルがありません", "エラー");
+                return false;
             }
-            catch
-            {
+
+            // 起動するプロセスの設定
+            var psi = new ProcessStartInfo();
+            psi.UseShellExecute = true;
+            psi.FileName = path;
+            psi.Verb = "runas"; // 管理者として実行
+            psi.Arguments = arguments;
+
+            // UACダイアログが親プログラム(自分)に対して表示されるようにする
+            psi.ErrorDialog = true;
+            psi.ErrorDialogParentHandle = parentForm.Handle;
+
+            try{
+                // 起動して終了まで待機
+                var p = Process.Start(psi);
+                p.WaitForExit();
+            }catch{
+                // 管理者権限のキャンセルされるなどで起動できなかった時
                 return false;
             }
             return true;

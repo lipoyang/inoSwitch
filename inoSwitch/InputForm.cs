@@ -30,19 +30,19 @@ namespace inoSwitch
             {
                 // Arduinoの場合
                 textName.Text = "Arduino";
-                radioArduino.Select();
+                radioArduino.Checked = true;
             }
             else if (filename.ToLower().Equals("ide4gr"))
             {
                 // IDE for GRの場合
                 textName.Text = "IDE for GR";
-                radioGR.Select();
+                radioGR.Checked = true;
             }
             else
             {
                 // 不明なIDEの場合
                 textName.Text = filename;
-                radioArduino.Select();
+                radioArduino.Checked = true;
             }
 
             // アイコン画像の取得
@@ -64,13 +64,13 @@ namespace inoSwitch
             switch(info.Type)
             {
                 case IdeType.ARDUINO:
-                    radioArduino.Select();
+                    radioArduino.Checked = true;
                     break;
                 case IdeType.IDE4GR:
-                    radioGR.Select();
+                    radioGR.Checked = true;
                     break;
                 default:
-                    radioArduino.Select();
+                    radioArduino.Checked = true;
                     break;
             }
 
@@ -100,7 +100,7 @@ namespace inoSwitch
         {
             Info.Name = textName.Text;
             Info.Path = textPath.Text;
-            if (radioGR.Checked)
+            if (radioArduino.Checked)
             {
                 Info.Type = IdeType.ARDUINO;
             }
