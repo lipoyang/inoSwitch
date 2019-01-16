@@ -143,7 +143,7 @@ namespace inoSwitch
             }
 
             // ファイルが異なっていれば
-            if (!fileCompare(src, dst)){
+            if (File.Exists(src) && !fileCompare(src, dst)){
                 // コピーするか確認？
                 if (MessageBox.Show(
                     "設定ファイルを上書きしますか？", "確認",
