@@ -13,6 +13,7 @@ Arduino系IDE設定切替ツール
 ## 対応IDE (動作確認が取れているIDE)
 * 本家 Arduino IDE
 * がじぇっとるねさす IDE for GR
+
 (この二つはpreferences.txtの保存場所が異なるために区別しているだけ)
 
 
