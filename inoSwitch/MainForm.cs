@@ -237,14 +237,31 @@ namespace inoSwitch
         {
             if (!m_forceClose)
             {
-                // TODO 起動中のIDEがあるか？
-
-                // 終了確認 
-                if (MessageBox.Show("終了してもいいですか？", "確認",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                    ) == DialogResult.No)
-                {
-                    e.Cancel = true;
+                // 起動中のIDEがあるか？
+                // ローカルコンピュータ上で実行されているすべてのプロセスから探す
+                string ideDir = Path.GetDirectoryName(m_ideInfo.Path);
+                bool running = false;
+                Process[] ps = Process.GetProcesses();
+                foreach (Process p in ps){
+                    try{
+                        if (p.ProcessName.ToLower().Contains("javaw")){
+                            string path = p.MainModule.FileName;
+                            if (path.Contains(ideDir)){
+                                running = true;
+                            }
+                        }
+                    }catch{
+                        ;
+                    }
+                }
+                // 起動中のIDEがあれば終了確認 
+                if (running){
+                    if (MessageBox.Show("起動中のIDEがあります。終了してもいいですか？\n 設定の保存はIDE", "確認",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                        ) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
         }
