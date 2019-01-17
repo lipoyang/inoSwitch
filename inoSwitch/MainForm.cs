@@ -40,21 +40,15 @@ namespace inoSwitch
                 if (checkAssociation() == false)
                 {
                     // 関連付けの可否を確認
-                    if (MessageBox.Show(
-                        "関連づけますか？", "確認",
+                    if (MessageBox.Show("関連づけますか？", "確認",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                        ) == DialogResult.No)
+                        ) == DialogResult.Yes)
                     {
-                        MessageBox.Show("さようなら。", "終了");
-
-                        m_forceClose = true;
-                        this.Close();
-                        return;
-                    }
-                    // inoファイルの関連付け
-                    if( associateIno() == false)
-                    {
-                        MessageBox.Show("関連付けに失敗しました。", "エラー");
+                        // inoファイルの関連付け
+                        if( associateIno() == false)
+                        {
+                            MessageBox.Show("関連付けできませんでした", "エラー");
+                        }
                     }
                 }
                 // IDEマネージャ画面を表示 (inoファイルを開かない)
@@ -68,11 +62,11 @@ namespace inoSwitch
             // inoファイルを開くとき
             else
             {
-                // 設定ファイルがあるか？
+                // IDE情報ファイルがあるか？
                 bool opened = false;
                 string setting = Path.GetDirectoryName(m_inoPath) + @"\inoSwitch.txt";
                 if (File.Exists(setting)){
-                    // 設定ファイルを読み込んでIDEを起動
+                    // IDE情報ファイルを読み込んでIDEを起動
                     if (loadSetting(setting)){
                         copyPreferences();
                         opened = startIde();
@@ -95,7 +89,7 @@ namespace inoSwitch
                     m_forceClose = true;
                     this.Close();
                 }
-                // 設定ファイルに保存
+                // IDE情報ファイルに保存
                 saveSetting(setting);
 
                 // スケッチ名
@@ -118,7 +112,7 @@ namespace inoSwitch
             }
         }
 
-        // Arduino IDEの設定ファイル(preferences.txt)のコピー
+        // Arduino IDEの環境設定ファイル(preferences.txt)のコピー
         private void copyPreferences()
         {
             // コピー元
@@ -145,8 +139,7 @@ namespace inoSwitch
             // ファイルが異なっていれば
             if (File.Exists(src) && !fileCompare(src, dst)){
                 // コピーするか確認？
-                if (MessageBox.Show(
-                    "設定ファイルを上書きしますか？", "確認",
+                if (MessageBox.Show("IDE環境設定ファイルを上書きしますか？", "確認",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     ) == DialogResult.Yes)
                 {
@@ -154,7 +147,7 @@ namespace inoSwitch
                     try{
                         File.Copy(src, dst, true);
                     }catch{
-                        MessageBox.Show("設定ファイルがコピーできませんでした", "エラー");
+                        MessageBox.Show("IDE環境設定設定ファイルがコピーできませんでした", "エラー");
                     }
                 }
             }
@@ -167,7 +160,7 @@ namespace inoSwitch
                 var p = Process.Start(m_ideInfo.Path, "\"" + m_inoPath + "\"");
                 return true;
             }catch{
-                MessageBox.Show("IDEの起動に失敗しました", "エラー");
+                MessageBox.Show("IDEが起動できませんでした", "エラー");
                 return false;
             }
         }
@@ -202,7 +195,7 @@ namespace inoSwitch
             return ret;
         }
 
-        // 設定ファイルの読み込み
+        // IDE情報ファイルの読み込み
         private bool loadSetting(string path)
         {
             try
@@ -216,12 +209,12 @@ namespace inoSwitch
             }
             catch
             {
-                MessageBox.Show("設定ファイルの読み込みに失敗しました。", "エラー");
+                MessageBox.Show("IDE情報ファイルが読み込めませんでした", "エラー");
                 return false;
             }
         }
 
-        // 設定ファイルの保存
+        // IDE情報ファイルの保存
         private void saveSetting(string path)
         {
             try
@@ -234,7 +227,7 @@ namespace inoSwitch
             }
             catch
             {
-                MessageBox.Show("設定ファイルの保存に失敗しました。", "エラー");
+                MessageBox.Show("IDE情報ファイルが保存できませんでした", "エラー");
             }
 
         }
@@ -247,8 +240,7 @@ namespace inoSwitch
                 // TODO 起動中のIDEがあるか？
 
                 // 終了確認 
-                if (MessageBox.Show(
-                    "終了してもいいですか？", "確認",
+                if (MessageBox.Show("終了してもいいですか？", "確認",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     ) == DialogResult.No)
                 {
@@ -317,7 +309,7 @@ namespace inoSwitch
 
             // プログラムがあるかチェック
             if (!System.IO.File.Exists(path)){
-                MessageBox.Show("inoAssociateファイルがありません", "エラー");
+                MessageBox.Show("inoAssociate.exeファイルがありません", "エラー");
                 return false;
             }
 
@@ -346,7 +338,7 @@ namespace inoSwitch
         // 保存ボタン
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            // ArduinoIDEの設定ファイル(preferences.txt)のバックアップ
+            // Arduino IDEの環境設定ファイル(preferences.txt)のバックアップ
 
             // 保存元
             string src;
@@ -373,7 +365,7 @@ namespace inoSwitch
             try{
                 File.Copy(src, dst, true);
             }catch{
-                MessageBox.Show("設定ファイルが保存できませんでした", "エラー");
+                MessageBox.Show("IDE環境設定ファイルが保存できませんでした", "エラー");
             }
         }
     }

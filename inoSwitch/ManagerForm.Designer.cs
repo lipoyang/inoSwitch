@@ -41,7 +41,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManagerForm";
-            this.Text = "ManagerForm";
+            this.Text = "IDEの選択";
             this.Load += new System.EventHandler(this.ManagerForm_Load);
             this.ResumeLayout(false);
 

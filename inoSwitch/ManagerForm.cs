@@ -36,7 +36,7 @@ namespace inoSwitch
         // フォーム読み込み時
         private void ManagerForm_Load(object sender, EventArgs e)
         {
-            // 設定ファイルからIDEリストの読み出し
+            // IDE情報登録ファイルからIDEリストの読み出し
             loadIdeList();
             // IDEリスト表示
             viewList();
@@ -61,7 +61,7 @@ namespace inoSwitch
                 try{
                     var p = Process.Start(SelectedIde.Path);
                 }catch{
-                    MessageBox.Show("IDEの起動に失敗しました", "エラー");
+                    MessageBox.Show("IDEが起動できませんでした", "エラー");
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace inoSwitch
         {
             // リストをソート
             m_ideList.Sort((a, b) => a.Name.CompareTo(b.Name));
-            // 設定ファイルに保存
+            // IDE情報登録ファイルに保存
             saveIdeList();
             // リスト表示の更新
             viewList();
@@ -84,7 +84,7 @@ namespace inoSwitch
             m_ideList.Remove(e.ideInfo);
             // リストをソート
             m_ideList.Sort((a, b) => a.Name.CompareTo(b.Name));
-            // 設定ファイルに保存
+            // IDE情報登録ファイルに保存
             saveIdeList();
             // リスト表示の更新
             viewList();
@@ -97,7 +97,7 @@ namespace inoSwitch
             m_ideList.Add(e.ideInfo);
             // リストをソート
             m_ideList.Sort((a, b)=>a.Name.CompareTo(b.Name));
-            // 設定ファイルに保存
+            // IDE情報登録ファイルに保存
             saveIdeList();
             // リスト表示の更新
             viewList();
@@ -124,11 +124,11 @@ namespace inoSwitch
             this.Controls.Add(m_addItemControl);
         }
 
-        // 設定ファイルに保存
+        // IDE情報登録ファイルに保存
         private void saveIdeList()
         {
             try{
-                // 設定ファイル名 (C:\Users\UserName\AppData\Local\inoSwitch\setting.txt)
+                // IDE情報登録ファイル名 (C:\Users\UserName\AppData\Local\inoSwitch\setting.txt)
                 string path =
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
                     + @"\inoSwitch";
@@ -143,14 +143,14 @@ namespace inoSwitch
                 serializer.Serialize(sw, m_ideList);
                 sw.Close();
             }catch{
-                MessageBox.Show("設定ファイルの保存に失敗しました。", "エラー");
+                MessageBox.Show("IDE情報登録ファイルが保存できませんでした", "エラー");
             }
         }
-        // 設定ファイルから読み込み
+        // IDE情報登録ファイルから読み込み
         private void loadIdeList()
         {
             try{
-                // 設定ファイル名 (C:\Users\UserName\AppData\Local\inoSwitch\setting.txt)
+                // IDE情報登録ファイル名 (C:\Users\UserName\AppData\Local\inoSwitch\setting.txt)
                 string path =
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
                     + @"\inoSwitch";
@@ -163,11 +163,11 @@ namespace inoSwitch
                     m_ideList = (List<IdeInfo>)serializer.Deserialize(sr);
                     sr.Close();
                 }else{
-                    // 設定ファイルがないなら空のリスト
+                    // IDE情報登録ファイルがないなら空のリスト
                     m_ideList = new List<IdeInfo>();
                 }
             }catch{
-                MessageBox.Show("設定ファイルの読み込みに失敗しました。", "エラー");
+                MessageBox.Show("IDE情報登録ファイルが読み込めませんでした", "エラー");
             }
         }
     }

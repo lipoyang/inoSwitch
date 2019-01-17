@@ -161,7 +161,7 @@
             this.Controls.Add(this.pictureIcon);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InputForm";
-            this.Text = "SettingForm";
+            this.Text = "IDE情報の入力";
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
