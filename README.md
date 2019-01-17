@@ -1,4 +1,4 @@
-# inoSwitch (アルファ版)
+# inoSwitch (ベータ版)
 Arduino系IDE設定切替ツール
 
 ## できること
