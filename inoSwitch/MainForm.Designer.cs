@@ -30,11 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.buttonSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelSketch = new System.Windows.Forms.Label();
+            this.labelIDE = new System.Windows.Forms.Label();
             this.textSketch = new System.Windows.Forms.TextBox();
             this.textIde = new System.Windows.Forms.TextBox();
             this.pictureIde = new System.Windows.Forms.PictureBox();
+            this.labelAttention1 = new System.Windows.Forms.Label();
+            this.labelAttention2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIde)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,31 +45,31 @@
             this.buttonSave.Font = new System.Drawing.Font("MS UI Gothic", 11F);
             this.buttonSave.Location = new System.Drawing.Point(27, 122);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(151, 29);
+            this.buttonSave.Size = new System.Drawing.Size(160, 29);
             this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = "設定を保存";
+            this.buttonSave.Text = "設定設定の保存";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // label1
+            // labelSketch
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label1.Location = new System.Drawing.Point(24, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "スケッチ";
+            this.labelSketch.AutoSize = true;
+            this.labelSketch.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.labelSketch.Location = new System.Drawing.Point(24, 27);
+            this.labelSketch.Name = "labelSketch";
+            this.labelSketch.Size = new System.Drawing.Size(51, 15);
+            this.labelSketch.TabIndex = 1;
+            this.labelSketch.Text = "スケッチ";
             // 
-            // label2
+            // labelIDE
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label2.Location = new System.Drawing.Point(24, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "IDE";
+            this.labelIDE.AutoSize = true;
+            this.labelIDE.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.labelIDE.Location = new System.Drawing.Point(24, 63);
+            this.labelIDE.Name = "labelIDE";
+            this.labelIDE.Size = new System.Drawing.Size(29, 15);
+            this.labelIDE.TabIndex = 2;
+            this.labelIDE.Text = "IDE";
             // 
             // textSketch
             // 
@@ -93,16 +95,38 @@
             this.pictureIde.TabIndex = 5;
             this.pictureIde.TabStop = false;
             // 
+            // labelAttention1
+            // 
+            this.labelAttention1.AutoSize = true;
+            this.labelAttention1.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
+            this.labelAttention1.Location = new System.Drawing.Point(205, 114);
+            this.labelAttention1.Name = "labelAttention1";
+            this.labelAttention1.Size = new System.Drawing.Size(160, 15);
+            this.labelAttention1.TabIndex = 6;
+            this.labelAttention1.Text = "環境設定の保存は必ず";
+            // 
+            // labelAttention2
+            // 
+            this.labelAttention2.AutoSize = true;
+            this.labelAttention2.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
+            this.labelAttention2.Location = new System.Drawing.Point(205, 136);
+            this.labelAttention2.Name = "labelAttention2";
+            this.labelAttention2.Size = new System.Drawing.Size(211, 15);
+            this.labelAttention2.TabIndex = 7;
+            this.labelAttention2.Text = "IDE終了後におこなってください。";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 169);
+            this.Controls.Add(this.labelAttention2);
+            this.Controls.Add(this.labelAttention1);
             this.Controls.Add(this.pictureIde);
             this.Controls.Add(this.textIde);
             this.Controls.Add(this.textSketch);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelIDE);
+            this.Controls.Add(this.labelSketch);
             this.Controls.Add(this.buttonSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -120,11 +144,13 @@
         #endregion
 
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelSketch;
+        private System.Windows.Forms.Label labelIDE;
         private System.Windows.Forms.TextBox textSketch;
         private System.Windows.Forms.TextBox textIde;
         private System.Windows.Forms.PictureBox pictureIde;
+        private System.Windows.Forms.Label labelAttention1;
+        private System.Windows.Forms.Label labelAttention2;
     }
 }
 
