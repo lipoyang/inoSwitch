@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
+using System.Diagnostics;
 
 namespace inoSwitch
 {
@@ -17,19 +18,19 @@ namespace inoSwitch
         // 選択されたIDE
         public IdeInfo SelectedIde = null;
 
-        // IDEを選択(起動できるか)
-        bool m_selectable;
+        // inoファイルを開くか
+        bool m_toOpenInoFile;
         // IDEリスト
         List<IdeInfo> m_ideList;
         // IDE追加欄
         AddItemControl m_addItemControl = new AddItemControl();
 
         // selectable: IDEを選択して実行できるか？
-        public ManagerForm(bool selectable)
+        public ManagerForm(bool open)
         {
             InitializeComponent();
 
-            m_selectable = selectable;
+            m_toOpenInoFile = open;
         }
 
         // フォーム読み込み時
@@ -41,9 +42,6 @@ namespace inoSwitch
             viewList();
             // IDE追加欄のイベントハンドラ設定
             m_addItemControl.onAdd += onAdd;
-
-            // ウィンドウのキャプション
-            this.Text = (m_selectable) ? "IDEの選択" : "IDEの管理";
         }
 
         // IDEが選択されたとき
@@ -51,8 +49,21 @@ namespace inoSwitch
         {
             // 選択されたIDE
             SelectedIde = e.ideInfo;
-            // フォームを閉じる
-            this.Close();
+
+            // inoファイルを開くとき
+            if (m_toOpenInoFile){
+                // フォームを閉じる (親フォーム側でinoファイルを開く)
+                this.Close();
+            }
+            // inoファイルを開かないとき
+            else{
+                // IDEを起動
+                try{
+                    var p = Process.Start(SelectedIde.Path);
+                }catch{
+                    MessageBox.Show("IDEの起動に失敗しました", "エラー");
+                }
+            }
         }
 
         // IDE情報が編集されたとき
@@ -102,7 +113,6 @@ namespace inoSwitch
             for (int i = 0; i < m_ideList.Count; i++)
             {
                 IdeItemControl item = new IdeItemControl(m_ideList[i]);
-                item.Selectable = m_selectable;
                 item.Location = new Point(10, 10 + i * 110);
                 item.onSelect += onSelect;
                 item.onEdit += onEdit;

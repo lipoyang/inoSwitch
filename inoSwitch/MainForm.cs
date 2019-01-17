@@ -57,7 +57,7 @@ namespace inoSwitch
                         MessageBox.Show("関連付けに失敗しました。", "エラー");
                     }
                 }
-                // IDEマネージャ画面を表示 (IDE起動不可)
+                // IDEマネージャ画面を表示 (inoファイルを開かない)
                 ManagerForm form = new ManagerForm(false);
                 form.ShowDialog(this);
 
@@ -80,7 +80,7 @@ namespace inoSwitch
                 }
                 // IDEを起動しなかった場合
                 if(!opened){
-                    // IDEマネージャ画面を表示 (IDE起動可)
+                    // IDEマネージャ画面を表示 (inoファイルを開く)
                     ManagerForm form = new ManagerForm(true);
                     form.ShowDialog(this);
                     // 選択されたIDEで起動
