@@ -256,7 +256,7 @@ namespace inoSwitch
                 }
                 // 起動中のIDEがあれば終了確認 
                 if (running){
-                    if (MessageBox.Show("起動中のIDEがあります。終了してもいいですか？\n 設定の保存はIDE", "確認",
+                    if (MessageBox.Show("起動中のIDEがあります。終了してもいいですか？", "確認",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         ) == DialogResult.No)
                     {

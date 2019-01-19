@@ -45,9 +45,9 @@
             this.buttonSave.Font = new System.Drawing.Font("MS UI Gothic", 11F);
             this.buttonSave.Location = new System.Drawing.Point(27, 122);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(160, 29);
+            this.buttonSave.Size = new System.Drawing.Size(120, 29);
             this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = "設定設定の保存";
+            this.buttonSave.Text = "バックアップ";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -99,17 +99,17 @@
             // 
             this.labelAttention1.AutoSize = true;
             this.labelAttention1.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
-            this.labelAttention1.Location = new System.Drawing.Point(205, 114);
+            this.labelAttention1.Location = new System.Drawing.Point(164, 114);
             this.labelAttention1.Name = "labelAttention1";
-            this.labelAttention1.Size = new System.Drawing.Size(160, 15);
+            this.labelAttention1.Size = new System.Drawing.Size(197, 15);
             this.labelAttention1.TabIndex = 6;
-            this.labelAttention1.Text = "環境設定の保存は必ず";
+            this.labelAttention1.Text = "環境設定のバックアップは必ず";
             // 
             // labelAttention2
             // 
             this.labelAttention2.AutoSize = true;
             this.labelAttention2.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
-            this.labelAttention2.Location = new System.Drawing.Point(205, 136);
+            this.labelAttention2.Location = new System.Drawing.Point(164, 136);
             this.labelAttention2.Name = "labelAttention2";
             this.labelAttention2.Size = new System.Drawing.Size(211, 15);
             this.labelAttention2.TabIndex = 7;
@@ -132,7 +132,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "inoSwitch";
+            this.Text = "環境設定のバックアップ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureIde)).EndInit();
