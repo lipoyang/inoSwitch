@@ -19,7 +19,7 @@ Arduino系IDE設定切替ツール
 ## 使いかた
 
 ### (1) インストール
-* [こちら](releases) から inoSwitch.zip をダウンロードし、適当な場所に解凍してください。inoSwitch.exe がアプリ本体です。
+* [こちら](https://github.com/lipoyang/inoSwitch/releases) から inoSwitch.zip をダウンロードし、適当な場所に解凍してください。inoSwitch.exe がアプリ本体です。
 
 ![図1](img/img1.png)
 
