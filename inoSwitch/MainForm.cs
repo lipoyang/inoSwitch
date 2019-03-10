@@ -40,7 +40,7 @@ namespace inoSwitch
                 if (checkAssociation() == false)
                 {
                     // 関連付けの可否を確認
-                    if (MessageBox.Show("関連づけますか？", "確認",
+                    if (MessageBox.Show("inoファイルを関連づけますか？", "確認",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         ) == DialogResult.Yes)
                     {
@@ -58,6 +58,7 @@ namespace inoSwitch
                 // 終了
                 m_forceClose = true;
                 this.Close();
+                return;
             }
             // inoファイルを開くとき
             else
@@ -88,6 +89,7 @@ namespace inoSwitch
                 if (!opened){
                     m_forceClose = true;
                     this.Close();
+                    return;
                 }
                 // IDE情報ファイルに保存
                 saveSetting(setting);
@@ -205,6 +207,10 @@ namespace inoSwitch
                 var sr = new StreamReader(path, new UTF8Encoding(false));
                 m_ideInfo = (IdeInfo)serializer.Deserialize(sr);
                 sr.Close();
+
+                // 有効なIDE情報があるか？
+                if (m_ideInfo.Path == "") return false; 
+
                 return true;
             }
             catch
